@@ -1,0 +1,25 @@
+{
+	"name": "aboehm-kibana",
+	"version": "0.1.0",
+	"author": "Alexander Böhm",
+	"summary": "Install and configure Kibana",
+	"license": "AGPL-3.0",
+	"source": "https://github.com/aboehm/puppet-kibana",
+	"project_page": "https://github.com/aboehm/puppet-kibana",
+	"issues_url": "https://github.com/aboehm/puppet-kibana/issues",
+	"dependencies": [
+		{"name": "aboehm/elastic", "version_requirement": ">= 0.1.0"},
+		{"name": "puppetlabs/apt", "version_requirement": ">= 0.4.0"},
+		{"name": "puppetlabs/stdlib","version_requirement":">= 1.0.0"}
+	],
+	"tags": ["monitoring", "big data", "elk", "html", "nodejs"],
+	"operatingsystem_support": [
+		{
+			"operatingsystem": "Ubuntu"
+		}, {
+			"operatingsystem": "Debian"
+		}
+	]
+
+}
+
