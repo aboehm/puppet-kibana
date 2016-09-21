@@ -1,0 +1,24 @@
+server.host: "<%= @interface %>"
+server.port: <%= @port %>
+server.basePath: "<%= @basepath %>"
+
+kibana.index: "<%= @index %>"
+elasticsearch.url: "<%= @elasticsearch_url %>"
+<% unless @elasticsearch_username.nil? -%>
+elasticsearch.username: "<%= @elasticsearch_username %>"
+elasticsearch.password: "<%= @elasticsearch_password %>"
+<% end -%>
+elasticsearch.ssl.verify: <%= @elasticsearch_ssl_verify %>
+
+<% unless @elasticsearch_ssl_ca.nil? -%>
+elasticsearch.ssl.ca: "<%= @elasticsearch_ssl_verify %>"
+<% end -%>
+<% unless @elasticsearch_ssl_cert.nil? -%>
+elasticsearch.ssl.cert: "<%= @elasticsearch_ssl_cert %>"
+elasticsearch.ssl.key: "<%= @elasticsearch_ssl_key %>"
+<% end -%>
+
+<% unless @ssl_cert.nil? -%>
+server.ssl.cert: "<%= @ssl_cert %>"
+server.ssl.key: "<%= @ssl_key %>"
+<% end -%>
