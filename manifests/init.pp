@@ -18,19 +18,19 @@ class kibana (
   $release   = $kibana::params::release,
 ) inherits kibana::params {
 
+  validate_re($ensure, 'present|installed|purged|absent|held|latest')
+  validate_bool($enable, true, false)
+  validate_re($running, 'running|stopped')
+  
+  include elastic
+
+  anchor { 'kibana::begin': } ->
   Class['elastic::key'] -> 
   Class['kibana::repo'] ->
   Class['kibana::install'] ->
   Class['kibana::config'] ->
-  Class['kibana::service']
-
-  validate_re($ensure, 'present|installed|purged|absent|held|latest')
-  validate_bool($enable, true, false)
-  validate_re($running, 'running|stopped')
-
-  ensure_resource( 'class', 'elastic::key', {
-    ensure  => $ensure,
-  } )
+  Class['kibana::service'] ->
+  anchor { 'kibana::end': }
 
   ensure_resource( 'class', 'kibana::repo', {
     ensure  => $ensure,
@@ -42,34 +42,13 @@ class kibana (
   } )
 
   ensure_resource( 'class', 'kibana::config', {
-    ensure    => $ensure,
+    ensure => $ensure,
   } )
 
   ensure_resource( 'class', 'kibana::service', {
     enable  => $enable,
     running => $running,
   } )
-}
-
-
-
-class kibana::install (
-  $ensure = $kibana::params::ensure,
-) inherits kibana::params {
-  package { 'kibana': 
-    ensure          => $ensure,
-    install_options => ['--no-install-recommends'],
-  }
-}
-
-class kibana::service (
-  $enable  = $kibana::params::enable,
-  $running = $kibana::params::running,
-) inherits kibana::params {
-  service { 'kibana':
-    enable => $enable,
-    ensure => $running,
-  }
 }
 
 # vi: set ft=puppet expandtab shiftwidth=2 tabstop=2 :
