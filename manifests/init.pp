@@ -25,8 +25,9 @@ class kibana (
   include elastic
 
   anchor { 'kibana::begin': } ->
-  Class['elastic::key'] -> 
+  Class['elastic::key'] ->
   Class['kibana::repo'] ->
+  Class['apt::update'] ->
   Class['kibana::install'] ->
   Class['kibana::config'] ->
   Class['kibana::service'] ->
