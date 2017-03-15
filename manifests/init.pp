@@ -25,18 +25,12 @@ class kibana (
   include elastic
 
   anchor { 'kibana::begin': } ->
-  Class['elastic::key'] ->
-  Class['kibana::repo'] ->
+  Class['elastic::repo'] ->
   Class['apt::update'] ->
   Class['kibana::install'] ->
   Class['kibana::config'] ->
   Class['kibana::service'] ->
   anchor { 'kibana::end': }
-
-  ensure_resource( 'class', 'kibana::repo', {
-    ensure  => $ensure,
-    release => $release,
-  } )
 
   ensure_resource( 'class', 'kibana::install', {
     ensure => $ensure,

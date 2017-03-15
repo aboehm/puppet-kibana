@@ -66,7 +66,6 @@ Include kibana module and configure with hiera.
 * `kibana::config`: Declare actions for configuration files
 * `kibana::install`: Install/remove package
 * `kibana::params`: Basic parameters of module
-* `kibana::repo`: Manage repository
 * `kibana::service`: Service management
 
 ## Limitations

@@ -14,12 +14,11 @@
 class kibana::params {
   $ensure            = present
   $enable            = true
-  $release           = '4.6'
   $running           = running
 
   $include_src       = false
 
-  $config            = '/opt/kibana/config/kibana.yml'
+  $config            = '/etc/kibana/kibana.yml'
   $config_file_mode  = '0644'
   $user              = 'kibana'
   $group             = 'kibana'
